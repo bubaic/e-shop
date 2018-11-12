@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    e-commX &mdash; Email Preferences
+{% endblock %}
+
+{% block body %}
+    <div class="col-12 col-md-6 mx-auto">
+    {% if title %}
+        <h4 class="text-white my-3">{{ title }}</h4>
+        <hr class="style-1">
+    {% endif %}
+        <form class="ml-3" action="{% if action_url %}{{ action_url }}{% endif %}" method="post">
+        {% csrf_token %}
+        {% if next_url %}
+            <input type="hidden" name="next" value="next_url">
+        {% endif %}
+            <label class="ct" for="rme">
+                Receive Marketing Email?
+                <input type="checkbox" name="{{ form.subscribed.name }}" id="rme">
+                <span class="checkmark"></span>
+            </label>
+            <button type="submit" class="btn btn-default">Save</button>
+        </form>
+    </div>
+{% endblock %}

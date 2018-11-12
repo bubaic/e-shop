@@ -1,0 +1,17 @@
+[
+{
+    "model": "orders.order",
+    "pk": 51,
+    "fields": {
+        "billing_profile": 4,
+        "order_id": "ECXFL0LLT0",
+        "shipping_address": null,
+        "billing_address": null,
+        "cart": 60,
+        "status": "created",
+        "shipping_total": "6.00",
+        "total": "6.00",
+        "active": true
+    }
+}
+]

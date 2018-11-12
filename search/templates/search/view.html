@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}
+    e-commX &mdash; Search: {{ query }}
+{% endblock %}
+
+{% block body %}
+    {% if query %}
+    <div class="col mb-3">
+        <span>
+            Results for <i><q> {{ query }} </q></i> :
+        {% if object_list|length <= 0 %}
+            <span class="text-muted text-uppercase ml-2">
+                sorry!! we didn't find a product matched your search.
+            </span>
+            <div class="col-12 col-md-6 ml-auto py-3">
+                {% include "search/searchbar.html" %}
+            </div><hr>
+        {% else %}
+            <span class="text-muted text-uppercase ml-2">
+                found {{ object_list|length }} item(s)
+            </span><hr>
+        {% endif %}
+        </span>
+
+        <div class="col my-3">
+            <div class="row">
+            {% for i in object_list %}
+                {% if forloop.counter|divisibleby:3 or forloop.counter|divisibleby:4 %}
+                <div class="col">
+                    {% include "products/snipps/card.html" with ins=i %}
+                </div>
+                {% else %}
+                <div class="col-3">
+                    {% include "products/snipps/card.html" with ins=i %}
+                </div>
+                {% endif %}
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}

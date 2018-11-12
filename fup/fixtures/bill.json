@@ -1,0 +1,46 @@
+[
+{
+    "model": "billing.billingprofile",
+    "pk": 3,
+    "fields": {
+        "user": null,
+        "email": "a.s@gmail.com",
+        "active": true,
+        "updated": "2018-09-22T18:34:34.802Z",
+        "timestamp": "2018-09-22T18:34:34.802Z"
+    }
+},
+{
+    "model": "billing.billingprofile",
+    "pk": 4,
+    "fields": {
+        "user": 1,
+        "email": "bubai@outlook.in",
+        "active": true,
+        "updated": "2018-09-24T10:27:03.000Z",
+        "timestamp": "2018-09-24T10:27:03.001Z"
+    }
+},
+{
+    "model": "billing.billingprofile",
+    "pk": 5,
+    "fields": {
+        "user": null,
+        "email": "sbrts105@g.com",
+        "active": true,
+        "updated": "2018-09-26T20:34:56.161Z",
+        "timestamp": "2018-09-26T20:34:56.161Z"
+    }
+},
+{
+    "model": "billing.billingprofile",
+    "pk": 6,
+    "fields": {
+        "user": null,
+        "email": "bubai.champs@facebook.com",
+        "active": true,
+        "updated": "2018-09-27T12:49:23.945Z",
+        "timestamp": "2018-09-27T12:49:23.945Z"
+    }
+}
+]

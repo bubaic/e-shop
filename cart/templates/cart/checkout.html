@@ -1,0 +1,163 @@
+{% extends "base.html" %}
+
+{% block title %}
+    e-commX &mdash; Checkout
+{% endblock %}
+
+{% block styles %}
+
+    .chk_out:after {
+        content:" ";width:230px; height:5px; background:#fff; display:block;
+        margin-top:10px; border-radius:3px; margin-bottom:10px;
+    }
+    .order {
+        background: white;
+        padding: 2em;
+        margin: 1em;
+        border-radius: 6px;
+        box-shadow:10px 10px 0px rgba(0,0,0,0.1);
+    }
+    .o-head {
+        border-radius: 6px;
+        box-shadow:3px 3px 6px 3px rgba(0,0,0,0.1);
+        padding: 0.5em;
+        background: rgba(0,0,0,0.3);
+        margin:0 0 1em 0;
+        min-width: 260px;
+    }
+    .use-addr {
+        background: rgba(255,255,255,0.2);
+        width:80%;
+        margin: 5%;
+        padding-left:3%;
+        padding-bottom:2%;
+        word-wrap:break-word;
+        border-radius:8px;
+    }
+
+
+{% endblock %}
+
+{% block body %}
+        <div class="col col-12">
+
+        </div>
+    {% if not billing_profile %}
+        <!-- login to continue -->
+        <div class="col col-md-6 col-sm-9" style="padding-bottom: 5.5em">
+            <p class="lead text-center text-white">Login to continue ...</p>
+            {% include "auth/form.html" with form=login_form next=request.build_absolute_uri %}
+        </div>
+        <!-- continue as a guest -->
+        <div class="col col-md-6 col-sm-9">
+            <p class="lead text-center text-white">Continue As A Guest</p>
+            {% url 'guest_register' as guest_ %}
+            {% include "auth/guest.html" with form=guest_form next=request.build_absolute_uri action_url=guest_ %}
+        </div>
+    {% else %}
+        {% if not object.shipping_address %}
+            <!-- shipping details -->
+            <div class="col col-7 mr-auto">
+                <p class="lead text-uppercase" style="padding-left:4%">Shipping Details ...</p>
+                <hr class="style-1-alt">
+                {% url 'adresses:address_view' as address_ %}
+                {% include "adresses/form.html" with country=country form=address_form next=request.build_absolute_uri action_url=address_ address_type='shipping' %}
+            </div>
+            <div class="col col-4">
+                <p class="lead text-uppercase">Use saved address</p>
+                <hr class="style-1-alt">
+                {% url 'adresses:address_use' as reuse %}
+                {% include "adresses/prev_addr.html" with address_qs=address_qs next=request.build_absolute_uri address_type='shipping' action_url=reuse %}
+            </div>
+
+        {% elif not object.billing_address %}
+            <!-- billing details -->
+            <div class="col col-7 mr-auto">
+                <p class="lead text-uppercase" style="padding-left:4%">Billing Details ...</p><hr class="style-1-alt">
+                {% url 'adresses:address_view' as address_ %}
+                {% include "adresses/form.html" with country=country form=address_form next=request.build_absolute_uri action_url=address_ address_type='billing' %}
+            </div>
+            <div class="col col-4">
+                <p class="lead text-uppercase">Use saved address</p>
+                <hr class="style-1-alt">
+                {% url 'adresses:address_use' as reuse %}
+                {% include "adresses/prev_addr.html" with address_qs=address_qs next=request.build_absolute_uri address_type='billing' action_url=reuse %}
+            </div>
+        {% else %}
+            {% if not has_card %}
+                <div class="col-10 col-md-6 mx-auto">
+                    <div class="stripe-payment-form" data-token="{{ publish_key }}"
+                        data-next-url="{{ request.build_absolute_uri }}" data-btn-title="Add Payment">
+                    </div>
+                </div>
+            {% else %}
+                <div class="col col-12">
+                    <h1 class="chk_out text-uppercase">Checkout</h1>
+                </div>
+                <div class="col order" >
+                    <h4 class="text-center">Finalize Checkout</h4>
+                    <hr class="style-1" style="width:30%;">
+                    <div class="row">
+                        <span class="col-3 o-head ml-auto">
+                            <h5 class="text-white text-center">
+                                Order ID &ndash; {{ object.order_id }}
+                            </h5>
+                        </span>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="col-10 mx-auto">
+                                <div class="card">
+                                    <div class="card-header">
+                                        Item(s) &nbsp;<span style="height:100%; width:0; border: 1px dashed #000"></span>&nbsp;
+                                        {% for p in object.cart.products.all %}
+                                        {{ p }}
+                                        {% if not forloop.last %}, {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                    <div class="card-body">
+                                        <p>
+                                            <h5 class=" text-uppercase">Cart Total</h5>
+                                            <h6 class="float-right" style="margin-top:-2%;">$ {{ object.cart.total }}</h6>
+                                        </p><hr class="style-1" style="margin-top:4%;">
+                                        <p>
+                                            <h5 class=" text-uppercase">Shipping Total</h5>
+                                            <h6 class="float-right" style="margin-top:-2%;">$ {{ object.shipping_total }}</h6>
+                                        </p><hr class="style-1" style="margin-top:4%;">
+                                        <p>
+                                            <h5 class=" text-uppercase">Order Total</h5>
+                                            <h6 class="float-right" style="margin-top:-2%;">$ {{ object.total }}</h6>
+                                        </p><hr class="style-1" style="margin-top:4%;">
+                                        <p>
+                                            <h5 class=" text-uppercase">Payment Method</h5>
+                                            <h6 class="float-right" style="margin-top:-2%;">
+                                                {{ billing_profile.default_card }} (<a style="text-decoration:none;"
+                                                    href="{{ billing_profile.get_payment_url }}?next={{ request.build_absolute_uri }}">Change?</a>)
+                                            </h6>
+                                        </p>
+                                    </div>
+                                    <div class="card-footer">
+                                        <p>
+                                            <h6 class=" text-uppercase">Shipped To...</h6>
+                                            <q class="ml-5 text-gray4"> <u>{{ object.shipping_address.get_addr|safe }}</u> </q>
+                                        </p>
+                                        <p>
+                                            <h6 class=" text-uppercase">Billed From...</h6>
+                                            <q class="ml-5 text-gray4 "> <u>{{ object.billing_address.get_addr|safe }}</u> </q>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 ml-auto mt-3">
+                                <form action="" method="post" class="form pull-right" style="margin-right:27%">
+                                {% csrf_token %}
+                                    <button class="btn btn-outline-info  text-uppercase">Checkout</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+{% endblock %}

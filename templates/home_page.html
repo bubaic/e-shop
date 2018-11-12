@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}
+    e-commX &mdash; Home
+{% endblock %}
+
+{% block body %}
+    <div>
+        <h1>I'm working</h1>
+        <p>
+            {{ title }}
+            <h6>{{ content }}</h6>
+        </p>
+        {% if user.is_authenticated %}
+        <p>
+            <h5>Premium</h5>
+            {{ prm }}
+        </p>
+        {% endif %}
+    </div>
+{% endblock %}

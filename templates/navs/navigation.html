@@ -1,0 +1,92 @@
+{% url 'home' as home_ %}
+{% url 'products:list' as prod_list %}
+{% url 'contact' as contact_ %}
+{% url 'about' as about_ %}
+{% url 'admin:index' as admin %}
+{% url 'cart:cart' as cart %}
+{% url 'login' as login_ %}
+{% url 'logout' as logout_ %}
+{% url 'accounts:acc_home' as acc_dash %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-yellow ">
+  <div class="container">
+      <a href="{{ home_ }}" class="navbar-brand">e-commX</a>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#cc"
+            aria-controls="cc" aria-labelledby="cc" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="cc">
+          <ul class="navbar-nav mr-auto">
+              <li class="nav-item {% if request.path == home_ %}active{% endif %}">
+                  <a class="nav-link" href="{{ home_ }}">
+                      Home <span class="sr-only">(current)</span>
+                  </a>
+              </li>
+              <li class="nav-item {% if request.path == prod_list %}active{% endif %}">
+                  <a href="{{ prod_list }}" class="nav-link">Products</a>
+              </li>
+              <li class="nav-item {% if request.path == contact_ %}active{% endif %}">
+                  <a href="{{ contact_ }}" class="nav-link">Contact</a>
+              </li>
+              <li class="nav-item {% if request.path == admin %}active{% endif %}">
+                  <a href="{{ admin }}" class="nav-link">Admin</a>
+              </li>
+              <li class="nav-item {% if request.path == about_ %}active{% endif %}">
+                  <a href="{{ about_ }}" class="nav-link">About</a>
+              </li>
+          </ul>
+          <ul class="navbar-nav">
+              <li class="nav-item {% if request.path == cart %}active{% endif %}">
+                  <a href="{{ cart }}" class="nav-link">
+                      <span class="cart-counter">{{ request.session.cart_items }}</span>
+                      <i class="fa fa-shopping-cart"></i>
+                  </a>
+              </li>
+          {% if request.user.is_authenticated %}
+              <li class="nav-item {% if request.path == login_ %}active{% endif %}">
+
+              </li>
+              <li class="nav-item dropdown">
+                  <a href="userDrpDn" class="nav-link dropdown-toggle" aria-haspopup="true"
+                     aria-expanded="false" role="button" data-toggle="dropdown">
+                      <i class="text-white">Hola, {{ request.user }}</i>
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="userDrpDn">
+                      <a href="{{ acc_dash }}" class="dropdown-item {% if request.path == acc_dash %}active{% endif %}">
+                          Dashboard
+                          <span class="pull-right"><i class="fa fa-dashboard"></i></span>
+                      </a>
+                      <a href="" class="dropdown-item">
+                          Billing <span class="pull-right"><i class="fa fa-money"></i></span>
+                      </a>
+                      <a href="" class="dropdown-item">
+                          Preferences <span class="pull-right">
+                          <i class="fa fa-cogs"></i>
+                      </span>
+                      </a>
+                      <a href="" class="dropdown-item">
+                          History <span class="pull-right">
+                          <i class="fa fa-history"></i>
+                      </span>
+                      </a>
+                      <div class="dropdown-divider"></div>
+                      <a href="{{ logout_ }}" class="dropdown-item">
+                          Logout
+                          <span class="pull-right"><i class="fa fa-sign-out" style="font-size: 18px; top:2px; position:relative"></i></span>
+                      </a>
+                  </div>
+              </li>
+          {% else %}
+              <li class="nav-item {% if request.path == login_ %}active{% endif %}">
+                  <a href="{{ login_ }}" class="nav-link">
+                      <i class="fa fa-sign-in" style="font-size: 18px; top:2px; position:relative"></i> Login
+                  </a>
+              </li>
+          {% endif %}
+          </ul>&nbsp;
+          {% include "search/searchbar.html" %}
+      </div>
+  </div>
+</nav>

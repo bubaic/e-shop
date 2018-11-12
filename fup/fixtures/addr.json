@@ -1,0 +1,58 @@
+[
+{
+    "model": "adresses.address",
+    "pk": 5,
+    "fields": {
+        "billing_profile": 4,
+        "address_type": "shipping",
+        "address_line_1": "Sarkar Villa",
+        "address_line_2": "Mahananda Pally, Jhaljhalia",
+        "city": "MALDA",
+        "zipcode": "732102",
+        "state": "West Bengal",
+        "country": "india"
+    }
+},
+{
+    "model": "adresses.address",
+    "pk": 6,
+    "fields": {
+        "billing_profile": 4,
+        "address_type": "billing",
+        "address_line_1": "Sarkar Villa",
+        "address_line_2": "Mahananda Pally, Jhaljhalia",
+        "city": "MALDA",
+        "zipcode": "732102",
+        "state": "West Bengal",
+        "country": "india"
+    }
+},
+{
+    "model": "adresses.address",
+    "pk": 7,
+    "fields": {
+        "billing_profile": 5,
+        "address_type": "shipping",
+        "address_line_1": "Sarkar Villa",
+        "address_line_2": "Mahananda Pally, Jhaljhalia",
+        "city": "MALDA",
+        "zipcode": "732102",
+        "state": "West Bengal",
+        "country": "india"
+    }
+},
+{
+    "model": "adresses.address",
+    "pk": 8,
+    "fields": {
+        "billing_profile": 5,
+        "address_type": "billing",
+        "address_line_1": "Sarkar Villa",
+        "address_line_2": "Mahananda Pally, Jhaljhalia",
+        "city": "MALDA",
+        "zipcode": "732102",
+        "state": "West Bengal",
+        "country": "india"
+    }
+}
+]

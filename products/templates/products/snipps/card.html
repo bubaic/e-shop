@@ -1,0 +1,11 @@
+<div class="card mb-3" style="min-height: 18rem;">
+    {% if ins.image %}
+    <img src="{{ ins.image.url }}" class="img img-responsive card-img-top" alt="No image found">
+    {% endif %}
+    <div class="card-body">
+        <h4 class="card-title">{{ ins.title }}</h4>
+        <p class="card-text text-justify">{{ ins.description|truncatewords:15 }}</p>
+        <a href="{{ ins.get_absolute_url }}" class="btn btn-outline-dark btn-sm float-right">View</a>
+        {% include "products/snipps/update-cart.html" with product=ins cart=cart %}
+    </div>
+</div>

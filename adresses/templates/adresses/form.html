@@ -1,0 +1,75 @@
+<style type="text/css">
+    .login-block {
+        float:left;
+        width:85%;
+    }
+    .login-block {
+        background:#fff; border-radius: 10px; box-shadow:15px 20px 0px rgba(0,0,0,0.1);
+    }
+    .login-sec {
+        padding: 50px 30px; position:relative;
+    }
+    .login-sec .copy-text {
+        position:absolute; width:80%; font-size:13px;bottom:-14%;
+    }
+    .login-sec .copy-text i {
+        color:#FEB58A;
+    }
+    .login-sec .copy-text a {
+        color:#E36262;
+    }
+    .login-sec h2 {
+        margin-bottom:30px; margin-top:-25px; font-weight:800; font-size:30px; color: #DE6262;
+    }
+    .login-sec h2:after {
+        content:" "; width:100px; height:5px; background:#FEB58A; display:block; margin-top:20px; border-radius:3px;
+        margin-left:auto;margin-right:auto
+    }
+    .btn-login {
+        background: #DE6262; color:#fff; font-weight:600;
+    }
+
+</style>
+<div class="login-block" style="margin-left:10%; margin-right:10%">
+    <div class="login-sec">
+        <form class="login-form" method="post"
+              action="{% if action_url %}{{ action_url }}{% else %}{% url 'login' %}{% endif %}">
+            {% csrf_token %}
+
+            {% if next %}
+            <input type="hidden" name="next" value="{{ next }}">
+            {% endif %}
+            {% if address_type %}
+                <input type="hidden" name="address_type" value="{{ address_type }}">
+                {% if address_type == 'shipping' %}
+                    <h2 class="text-center">Where to ship your items?</h2>
+                {% else %}
+                    <h2 class="text-center">Enter your billing address!</h2>
+                {% endif %}
+            {% endif %}
+
+            {% for error in form.non_field_errors %}
+                <div class="form-group has-errors text-danger small">
+                {{ error }}
+                </div>
+            {% endfor %}
+            {% for field in form %}
+                <div class="form-group has-errors text-danger small">
+                {{ field.errors }}
+                </div>
+                <div class="form-group has-errors text-danger small">
+                </div>
+                <div class="form-group">
+                {{ field.label_tag }}
+                {{ field }}
+                </div>
+            {% endfor %}
+
+            <div class="form-check">
+                <button type="submit" class="btn btn-login float-right">
+                    Save Address &nbsp; <i class="fa fa-save"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

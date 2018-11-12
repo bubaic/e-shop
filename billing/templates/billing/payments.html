@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    e-commX | Payments
+{% endblock %}
+
+{% block body %}
+    <!-- stripe form -->
+    <div class="col-10 col-md-6 mx-auto">
+        <div class="stripe-payment-form" data-token="{{ publish_key }}"
+             data-next-url="{% if next_url %}{{ next_url }}{% endif %}" data-btn-title="Add New Card"></div>
+    </div>
+{% endblock %}

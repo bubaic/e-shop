@@ -1,0 +1,14 @@
+[
+{
+    "model": "cart.cart",
+    "pk": 60,
+    "fields": {
+        "user": 1,
+        "subtotal": "0.00",
+        "total": "0.00",
+        "updated": "2018-10-01T20:36:05.564Z",
+        "timestamp": "2018-09-30T10:45:45.655Z",
+        "products": []
+    }
+}
+]

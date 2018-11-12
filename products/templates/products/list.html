@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}
+    e-commX &mdash; Products List
+{% endblock %}
+
+{% block body %}
+    <div class="col">
+        <div class="row">
+        {% for i in object_list %}
+            <div class="col">
+                {% include "products/snipps/card.html" with ins=i %}
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,54 @@
+[
+{
+    "model": "products.product",
+    "pk": 2,
+    "fields": {
+        "title": "Hat",
+        "slug": "hat",
+        "description": "jask",
+        "price": "15.00",
+        "image": "products/268714001/268714001.jpg",
+        "featured": false,
+        "active": true
+    }
+},
+{
+    "model": "products.product",
+    "pk": 3,
+    "fields": {
+        "title": "Supercomp",
+        "slug": "super",
+        "description": "It's a super computer... blah bla blah!! Featured now...",
+        "price": "2222.00",
+        "image": "products/3744022519/3744022519.jpg",
+        "featured": true,
+        "active": true
+    }
+},
+{
+    "model": "products.product",
+    "pk": 6,
+    "fields": {
+        "title": "phone",
+        "slug": "phone",
+        "description": "cheapest phone in india",
+        "price": "120.00",
+        "image": "",
+        "featured": false,
+        "active": true
+    }
+},
+{
+    "model": "products.product",
+    "pk": 7,
+    "fields": {
+        "title": "phone",
+        "slug": "phone-vp9qahzx80",
+        "description": "expensive one. I hope by doing this you will be able to let your imagination loose and fill in the blanks. One description could create hundreds of characters which all look the same, but are entirely different people.",
+        "price": "500.00",
+        "image": "",
+        "featured": false,
+        "active": true
+    }
+}
+]

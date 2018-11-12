@@ -1,0 +1,69 @@
+<style type="text/css">
+    .login-block {
+        float:left;
+        width:85%;
+        height:100%;
+    }
+    .login-block {
+        background:#fff; border-radius: 10px; box-shadow:15px 20px 0px rgba(0,0,0,0.1);
+    }
+    .login-sec {
+        padding: 50px 30px; position:relative;
+    }
+    .login-sec .copy-text {
+        position:absolute; width:80%; font-size:13px;bottom:-14%;
+    }
+    .login-sec .copy-text i {
+        color:#FEB58A;
+    }
+    .login-sec .copy-text a {
+        color:#E36262;
+    }
+    .login-sec h2 {
+        margin-bottom:30px; margin-top:-25px; font-weight:800; font-size:30px; color: #DE6262;
+    }
+    .login-sec h2:after {
+        content:" "; width:100px; height:5px; background:#FEB58A; display:block; margin-top:20px; border-radius:3px;
+        margin-left:auto;margin-right:auto
+    }
+    .btn-login {
+        background: #DE6262; color:#fff; font-weight:600;
+    }
+</style>
+<div class="login-block" style="margin-left:10%; margin-right:10%">
+    <div class="login-sec">
+        <h2 class="text-center">Login Now</h2>
+        <form class="login-form" method="post"
+              action="{% url 'login' %}">
+            {% csrf_token %}
+
+            {% if next %}
+                <input type="hidden" name="next" value="{{ next }}">
+            {% endif %}
+
+            <div class="form-group">
+                <label for="user" class="text-uppercase">Username</label>
+                <input type="text" name="username" class="form-control" placeholder="Username" id="user">
+            </div>
+            <div class="form-group">
+                <label for="pass" class="text-uppercase">Password</label>
+                <input type="password" name="password" class="form-control" placeholder="• • • • • • • •" id="pass">
+            </div>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input">
+                    <small>Remember Me</small>
+                </label>
+                <button type="submit" class="btn btn-login float-right">
+                    Submit &nbsp; <i class="fa fa-sign-in"></i>
+                </button>
+            </div>
+        </form>
+        <div class="copy-text">
+            <p>
+                Forget Password? <a href="#">Reset Here</a><br>
+                New Here? <a href="#">Please Register</a>
+            </p>
+        </div>
+    </div>
+</div>

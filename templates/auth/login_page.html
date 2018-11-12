@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block title %}
+    e-commX &mdash; Login Please...
+{% endblock %}
+
+{% block styles %}
+    .login-block {
+        float:left;
+        width:100%;
+    }
+    .banner-sec {
+        background: url('/static/img/pexels-photo.jpg')  no-repeat left bottom;
+        background-size:cover;
+        min-height:500px;
+        border-radius: 0 10px 10px 0;
+        padding:0;
+    }
+    .login-block {
+        background:#fff; border-radius: 10px; box-shadow:15px 20px 0px rgba(0,0,0,0.1);
+    }
+    .login-sec {
+        padding: 50px 30px; position:relative;
+    }
+    .login-sec .copy-text {
+        position:absolute; width:80%; bottom:2%; font-size:13px;
+    }
+    .login-sec .copy-text i {
+        color:#FEB58A;
+    }
+    .login-sec .copy-text a {
+        color:#E36262;
+    }
+    .login-sec h2 {
+        margin-bottom:30px; font-weight:800; font-size:30px; color: #DE6262;
+    }
+    .login-sec h2:after {
+        content:" "; width:100px; height:5px; background:#FEB58A; display:block; margin-top:20px; border-radius:3px;
+        margin-left:auto;margin-right:auto
+    }
+    .btn-login {
+        background: #DE6262; color:#fff; font-weight:600;
+    }
+    .banner-text {
+        width:90%; position:absolute; bottom:40px; padding-left:20px;
+    }
+    .banner-text h2 {
+        color:#E36262; font-weight:600;
+    }
+    .banner-text h2:after {
+        content:" "; width:100px; height:5px; background:#FEB58A; display:block; margin-top:20px; border-radius:3px;
+    }
+    .banner-text p {
+        color:#8BC34A;font-size: 1.25em;
+    }
+{% endblock %}
+
+{% block body %}
+    <section class="login-block my-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 login-sec">
+                    <h2 class="text-center">Login Now</h2>
+                    <form class="login-form" method="post">
+                    {% csrf_token %}
+                    {% for error in form.non_field_errors %}
+                        <div class="form-group has-errors text-danger small">
+                        {{ error }}
+                        </div>
+                    {% endfor %}
+
+                    {% for field in form %}
+                        <div class="form-group has-errors text-danger small">
+                        {{ field.errors }}
+                        </div>
+                        <div class="form-group">
+                        {{ field.label_tag }}
+                        {{ field }}
+                        </div>
+                    {% endfor %}
+
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input">
+                                <small>Remember Me</small>
+                            </label>
+                            <button type="submit" class="btn btn-login float-right">
+                                Submit &nbsp; <i class="fa fa-sign-in"></i>
+                            </button>
+                        </div>
+                    </form>
+                    <div class="copy-text">
+                        <hr>
+                        <p>
+                            Forget Password? <a href="#">Reset Here</a><br>
+                            New Here? <a href="{% url 'register' %}">Please Register</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-8 banner-sec">
+                    <div class="banner-text">
+                        <h2>This is Heaven</h2>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+

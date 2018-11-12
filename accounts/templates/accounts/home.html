@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    e-commX &mdash; My Account
+{% endblock %}
+
+{% block body %}
+    <!-- urls -->
+    {% url 'marketing:mkt-pref' as mkt %}
+    {% url 'billing:bill-pay' as pay_method %}
+
+    <div class="col-12">
+        <h5 class="text-white text-uppercase text-center">My Account</h5>
+        <hr class="style-1-alt">
+    </div>
+
+    <div class="col-12 col-md-4 my-3">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Support</h4>
+                <div class="list-group">
+                    <a href="{% url 'about' %}" class="list-group-item">About</a>
+                    <a href="{% url 'contact' %}" class="list-group-item">Contact</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-4 my-3">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Billing</h4>
+                <div class="list-group">
+                    <a href="{% url 'about' %}" class="list-group-item">Orders</a>
+                    <a href="{{ pay_method }}" class="list-group-item">Payment</a>
+                    <a href="{% url 'contact' %}" class="list-group-item">Addresses</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-4 my-3">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Update Account Details</h4>
+                <div class="list-group">
+                    <a href="{% url 'about' %}" class="list-group-item">Name</a>
+                    <a href="{% url 'contact' %}" class="list-group-item">Reset Password</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-4 my-3">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Preferences</h4>
+                <div class="list-group">
+                    <a href="{{ mkt }}" class="list-group-item">Email Marketing</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-4 my-3">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">History</h4>
+                <div class="list-group">
+                    <a href="{% url 'about' %}" class="list-group-item">Products Viewed</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

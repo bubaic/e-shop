@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block title %}
+    e-commX &mdash; Contact Us
+{% endblock %}
+
+{% block styles %}
+    .contact-form {
+        margin-top: 6%; margin-bottom: 5%; width: 70%; background: #fff; border-radius: 6px;
+        box-shadow: 10px 10px 12px rgba(0,0,0, 0.2);
+    }
+    .contact-form .form-control{
+        border-radius: 6px;
+    }
+    .contact-image{
+        text-align: center;
+    }
+    .contact-image img{
+        border-radius: 7rem; margin-top: -3.5%; width: 11%; transform: rotate(45deg);
+        filter: drop-shadow(6px 3px 6px rgba(0,0,0,0.35));
+    }
+    .contact-form form{
+        padding: 14%;
+    }
+    .contact-form form .row{
+        margin-bottom: -7%;
+    }
+    .contact-form h3 {
+        margin-bottom: 8%; margin-top: -12%; text-align: center;
+    }
+    .contact-form h3, label {
+        color: #0062cc;
+    }
+    .contact-form .btnContact {
+        border: none; border-radius: 6px; padding: 1.5%; background: #dc3545; font-weight: 600; color: #fff;
+        cursor: pointer; outline: none; box-shadow: -6px 5px 10px rgba(0,0,0,0.2);
+    }
+    .btnContact:hover {
+        box-shadow: -7px 6px 20px rgba(0,0,0,0.2); background: rgba(220,53,69,0.9);
+    }
+    i#ct {
+        color: #0062cc;
+        font-size: 28px;
+        animation: anim 0.4s infinite;
+    }
+
+    @keyframes anim {
+        0% { transform: rotate(5deg); }
+        25% { transform: rotate(5deg); }
+        50% { transform: rotate(0deg); }
+        75% { transform: rotate(5deg); }
+        100% { transform: rotate(-5deg); }
+    }
+
+{% endblock %}
+
+{% block body %}
+<div class="col-12">
+    <h4 class="text-white text-uppercase"><i class="fa fa-phone" id="ct"></i> Contact Us</h4>
+    <hr class="style-1-alt">
+</div>
+<div class="col">
+    <div class="contact-form mx-auto">
+        <div class="contact-image">
+            <img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact"/>
+        </div>
+        <form method="post" class="contact" action="{% url 'contact' %}">
+            {% csrf_token %}
+            <h3 class="text-uppercase">Drop Us a Message</h3>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" name="{{ form.fullname.name }}" class="form-control" required
+                               placeholder="Your Name *" id="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" name="{{ form.email.name }}" class="form-control" required
+                               placeholder="Your Email *" id="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="msg">Message</label>
+                        <textarea name="{{ form.msg.name }}" class="form-control" placeholder="Your Message *" id="msg"
+                                  style="width: 100%; height: 150px;"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" name="btnSubmit" class="btnContact" value="Send Message" />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

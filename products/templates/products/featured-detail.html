@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}
+    e-commX &mdash; Products List
+{% endblock %}
+
+{% block body %}
+<div class="col col-8 ml-auto mr-auto">
+    <div class="card">
+        <div class="card-header gray-dark"><h3 class="text-danger">{{ object.title }}</h3></div>
+        <div class="card-body">
+            <img src="{{ object.image.url }}" class="img-fluid">
+            <p class="mt-3">
+            <div class="ml-2">{{ object.description }}</div>
+            <b class="float-right mr-2">$ {{ object.price }}</b>
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

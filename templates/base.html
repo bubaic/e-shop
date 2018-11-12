@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+      <meta charset="utf-8">
+      <title>
+          {% block title %}{% endblock %}
+      </title>
+
+    <!-- stylesheets -->
+      <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+      <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+      <link rel="stylesheet" href="{% static 'css/jquery-confirm.min.css' %}">
+
+    <!-- custom styles -->
+      <link rel="stylesheet" href="{% static 'css/stripe.css' %}">
+      <link rel="stylesheet" href="{% static 'css/main.css' %}">
+      <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+      <style type="text/css">
+
+      {% block styles %}{% endblock %}
+      </style>
+  </head>
+<body>
+<!-- navigation -->
+{% include "navs/navigation.html" %}
+
+<!-- main content -->
+<main class="my-3" style="position: relative">
+    <div class="container">
+        {% if messages %}
+        <div class="alert alert-success messages">
+            {% for message in messages %}
+            <span {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                Important:
+                {% endif %}
+                <i class="fa fa-check" style="color:green"></i>
+                {{ message }}
+            </span>
+            {% endfor %}
+        </div>
+        {% endif %}
+        <div class="row">
+
+
+            {% block body %}{% endblock %}
+        </div>
+    </div>
+</main>
+
+<!-- footer -->
+<footer class="blue-gray800 footer-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="about-box">
+                    <h5 class="mb-3 text-gray4 text-uppercase">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-white">Home</a></li>
+                        <li><a href="about.html" class="text-white">About</a></li>
+                        <li><a href="services.html" class="text-white">Services</a></li>
+                        <li><a href="contact.html" class="text-white">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <div class="about-box">
+                    <h5 class="mb-3 text-gray4 text-uppercase">Legal Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="" class="text-white">Privacy</a></li>
+                        <li><a href="" class="text-white">Terms</a></li>
+                        <li><a href="" class="text-white">Conditions</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <h5 class="text-gray4 text-uppercase">Share the Love</h5>
+                <ul class="social">
+                    <li><a class="fb" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                    <li><a class="tw" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                    <li><a class="go" title="Google +"><i class="fa fa-google-plus"></i></a></li>
+                    <li><a class="ld" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="copy-footer bg-secondary py-2 mt-4">
+        <div class="container text-right text-light">&copy; <a href=""></a> All rights reserved. Created with
+            <u class="fa-stack">
+                <i class="fa fa-heart fa-stack-1x" style="color:#dc3545"></i>
+                <i class="fa fa-heart-o fa-stack-1x"></i>
+                <i class="fa fa-bolt fa-stack-1x fa-inverse"
+                   style="top:-5%;left:2.5%;position:absolute;"></i>
+            </u>By Bubai
+        </div>
+    </div>
+</footer>
+
+<!-- scripts -->
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/jquery-confirm.min.js' %}"></script>
+<script src="https://js.stripe.com/v3/"></script>
+<script src="{% static 'js/jsrender.js' %}"></script>
+{% include 'navs/js_template.html' %}
+<script src="{% static 'js/stripe-flow.js' %}"></script>
+<script src="{% static 'js/base.js' %}"></script>
+<script src="{% static 'js/csrf.js' %}"></script>
+<!-- my scripts -->
+</body>
+</html>

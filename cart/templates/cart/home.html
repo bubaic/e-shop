@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% block title %}
+    e-commX &mdash; {{ request.user.username }}'s Cart
+{% endblock %}
+
+{% block body %}
+    <div class="col my-3">
+    {% if cart.products.exists %}
+        <h4 class='text-uppercase text-white' style="margin-bottom:3%">Your Cart</h4>
+        <div class="row">
+            <div class="col-7">
+                <table class="table table-hover cart-home">
+                        <thead>
+                        <th>#</th>
+                        <th>Item</th>
+                        <th>Item Description</th>
+                        <th>Price</th>
+                        <th>Actions</th>
+                        </thead>
+                        <tbody class="cart-body">
+                        {% for product in cart.products.all %}
+                        <tr class="cart-product">
+                            <th>{{ forloop.counter }}</th>
+                            <th>
+                                <a href="{{ product.get_absolute_url }}" class="text-uppercase text-danger">{{ product.title }}</a>
+                            </th>
+                            <td>
+                                {{ product.description|truncatechars:50 }}
+                            </td>
+                            <td>
+                                {{ product.price }}
+                            </td>
+                            <td>
+                                {% include "cart/snipps/remove-product.html" with product_id=product.id %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                <div class="cart-item-remove" style="display:none;">
+                    {% include "cart/snipps/remove-product.html" %}
+                </div>
+            </div>
+            <div class="col-3 ml-auto">
+                <table class="table table-striped cart-summary">
+                    <thead>
+                        <th colspan="2" class="text-center text-uppercase">Cart Summary</th>
+                    </thead>
+                    <tr>
+                        <td>
+                            <i>Subtotal</i>
+                        </td>
+                        <td class="text-right">
+                            $ <span class="cart-subtotal">{{ cart.subtotal }}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <i>Total</i>
+                        </td>
+                        <td class="text-right">
+                            $ <span class="cart-total">{{ cart.total }}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <a class="btn btn-sm btn-block btn-secondary" href="{% url 'cart:checkout' %}">
+                                Go to Secure Checkout
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        {% else %}
+        <h4 class="text-uppercase text-white">Cart</h4>
+
+        <p class="">
+            Cart is Empty!
+        </p>
+
+        <div class="col-3 ml-auto">
+            <table class="table table-striped">
+                <thead>
+                    <th colspan="2" class="text-center text-uppercase">Cart Summary</th>
+                </thead>
+                <tr>
+                    <td>
+                        <i>Subtotal</i>
+                    </td>
+                    <td class="text-right">
+                        $ <span class="cart-subtotal">{{ cart.subtotal }}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <i>Total</i>
+                    </td>
+                    <td class="text-right">
+                        $ <span class="cart-total">{{ cart.total }}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <a class="btn btn-sm btn-block btn-secondary" href="{% url 'cart:checkout' %}">
+                            Go to Secure Checkout
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    {% endif %}
+    </div>
+{% endblock %}
