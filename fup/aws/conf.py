@@ -1,16 +1,16 @@
 import datetime
 
-AWS_GROUP_NAME          = 'ecom_group'
-AWS_USERNAME            = 'ecom-user'
-AWS_ACCESS_KEY_ID       = 'AKIAJCONFN35NOSP2NAQ'
-AWS_SECRET_ACCESS_KEY   = '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'
+AWS_GROUP_NAME          = 'buckGrp'
+AWS_USERNAME            = 'me'
+AWS_ACCESS_KEY_ID       = 'AKIAJOVKMAYF6PXH5T5Q'
+AWS_SECRET_ACCESS_KEY   = '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'
 AWS_FILE_EXPIRE         = 200
 AWS_PRELOAD_METADATA    = True
 AWS_QUERYSTRING_AUTH    = True
 
 DEFAULT_FILE_STORAGE = 'fup.aws.utils.MediaRootS3BotoStorage'
 STATICFILES_STORAGE = 'fup.aws.utils.StaticRootS3BotoStorage'
-AWS_STORAGE_BUCKET_NAME = 'ecom-bucket0'
+AWS_STORAGE_BUCKET_NAME = 'my-buck0'
 S3DIRECT_REGION = 'us-east-1'
 S3_URL = '//%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
 MEDIA_URL = '//%s.s3.amazonaws.com/media/' % AWS_STORAGE_BUCKET_NAME
