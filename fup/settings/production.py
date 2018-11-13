@@ -1,6 +1,6 @@
 import os
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 SECRET_KEY = 'of$vg@a+a$oy5nf6v(i(jxi=h^6*!y8z=m&g)2!cswo9e60sa5'
 
@@ -119,11 +119,11 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
-STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static_cdn', 'static_root')
+STATIC_ROOT = os.path.dirname(os.path.join(os.path.dirname(BASE_DIR), 'static_cdn', 'static_root'))
 
 # media files
 
-MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static_cdn', 'media_root')
+MEDIA_ROOT = os.path.dirname(os.path.join(os.path.dirname(BASE_DIR), 'static_cdn', 'media_root'))
 MEDIA_URL = '/media/'
 
 from fup.aws.conf import *
