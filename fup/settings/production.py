@@ -119,11 +119,11 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
-STATIC_ROOT = os.path.dirname(os.path.join(os.path.dirname(BASE_DIR), 'static_cdn', 'static_root'))
-
-# media files
-
-MEDIA_ROOT = os.path.dirname(os.path.join(os.path.dirname(BASE_DIR), 'static_cdn', 'media_root'))
+# STATIC_ROOT = os.path.dirname(os.path.join(os.path.dirname(BASE_DIR), 'static_cdn', 'static_root'))
+#
+# # media files
+#
+# MEDIA_ROOT = os.path.dirname(os.path.join(os.path.dirname(BASE_DIR), 'static_cdn', 'media_root'))
 MEDIA_URL = '/media/'
 
 from fup.aws.conf import *
