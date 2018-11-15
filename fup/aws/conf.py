@@ -1,20 +1,22 @@
 import datetime, boto3
 from botocore.client import Config
 
-s3 = boto3.resource(
-    's3',
-    aws_access_key_id='AKIAJOVKMAYF6PXH5T5Q',
-    aws_secret_access_key='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',
-    config=Config(signature_version='s3v4')
-)
+# s3 = boto3.resource(
+#     's3',
+#     aws_access_key_id='AKIAJOVKMAYF6PXH5T5Q',
+#     aws_secret_access_key='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',
+#     config=Config(signature_version='s3v4')
+# )
 
 AWS_GROUP_NAME          = 'buckGrp'
 AWS_USERNAME            = 'me'
-# AWS_ACCESS_KEY_ID       = 'AKIAJOVKMAYF6PXH5T5Q'
-# AWS_SECRET_ACCESS_KEY   = '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'
+AWS_ACCESS_KEY_ID       = 'AKIAJOVKMAYF6PXH5T5Q'
+AWS_SECRET_ACCESS_KEY   = '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'
 AWS_FILE_EXPIRE         = 200
 AWS_PRELOAD_METADATA    = True
 AWS_QUERYSTRING_AUTH    = True
+
+AWS_S3_SIGNATURE_VERSION = "s3v4"
 
 DEFAULT_FILE_STORAGE = 'fup.aws.utils.MediaRootS3BotoStorage'
 STATICFILES_STORAGE = 'fup.aws.utils.StaticRootS3BotoStorage'
