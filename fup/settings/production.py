@@ -1,8 +1,11 @@
-import os
+import os, configparser
+config = configparser.ConfigParser()
+config.read('./.env')
+proj = config['Project']
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-SECRET_KEY = 'of$vg@a+a$oy5nf6v(i(jxi=h^6*!y8z=m&g)2!cswo9e60sa5'
+SECRET_KEY = proj.DJANGO_SECRET
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False

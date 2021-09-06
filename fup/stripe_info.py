@@ -2,7 +2,10 @@
 '''
 Stripe API Setup
 '''
-import stripe
+import stripe, configparser
+config = configparser.ConfigParser()
+config.read('./.env')
+stripe_keys = config['Stripe']
 
-stripe.api_key = 'sk_test_3t7RPPVT6mXz3ene00lxomSN'
-STRIPE_PK = 'pk_test_HdPGyuCH9gYHiBYNXOMKzLRf'
+stripe.api_key	= stripe_keys.STRIPE_API
+STRIPE_PK		= stripe_keys.STRIPE_PK
